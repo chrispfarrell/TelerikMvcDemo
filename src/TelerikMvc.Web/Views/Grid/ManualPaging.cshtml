@@ -1,0 +1,75 @@
+﻿@using Telerik.Web.Mvc.UI
+@using TelerikMvc.Data
+@{
+    ViewBag.Title = "ManualPaging";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ManualPaging</h2>
+@(Html.Telerik().Grid<GetCustomersPagedResult>()
+    .Name("CustomerGrid")
+    .Columns(columns =>
+                 {
+                     columns.Bound(o => o.CustomerId);
+                     columns.Bound(o => o.CompanyName);
+                     columns.Bound(o => o.ContactTitle);
+                 })
+        .DataBinding(dataBinding => dataBinding.Ajax().Select("GetCustomersManualPaging", "Grid"))
+    .Scrollable(scrolling => scrolling.Enabled(true).Height(180))
+    .Selectable()
+    .Sortable(sorting => sorting.Enabled(false))
+    .Pageable(paging => paging.Enabled(true))
+    .Groupable(grouping => grouping.Enabled(false))
+    .EnableCustomBinding(true)
+    .Footer(true)
+)
+
+
+<h2>Markup</h2>
+<pre class="brush: html">
+
+&#64;(Html.Telerik().Grid&lt;Customer&gt;()
+     .Name("CustomerGrid")
+    .Columns(columns =>
+                 {
+                     columns.Bound(o => o.CustomerId);
+                     columns.Bound(o => o.CompanyName);
+                     columns.Bound(o => o.ContactTitle);
+                 })
+    .DataBinding(dataBinding => dataBinding.Ajax().Select("GetCustomersManualPaging", "Grid"))
+    .Scrollable(scrolling => scrolling.Enabled(true).Height(180))
+    .Selectable()
+    .Sortable(sorting => sorting.Enabled(false))
+    .Pageable(paging => paging.Enabled(true))
+    .Groupable(grouping => grouping.Enabled(false))
+    
+    /*below element required for custom paging*/
+    .EnableCustomBinding(true)
+
+    .Footer(true)
+)
+
+
+</pre>
+<h2>Controller</h2>
+<pre class="brush: csharp">
+public ActionResult ManualPaging()
+{
+    return View();
+}
+
+//extra element in GridAction attribute
+[GridAction(EnableCustomBinding = true)]
+public ActionResult GetCustomersManualPaging(int page, int size)
+{
+    var context = new TelerikDemoDataContext(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+
+    var result = context.GetCustomersPaged(page, size).ToList();
+    var gridModel = new GridModel{
+        Data = result,
+        Total = 91
+    };
+            
+    return View(gridModel);
+}
+</pre>

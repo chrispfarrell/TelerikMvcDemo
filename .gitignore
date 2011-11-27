@@ -1,0 +1,7 @@
+src/_ReSharper*
+src/TelerikMvc.Data/bin/*
+src/TelerikMvc.Data/obj/*
+src/TelerikMvc.Web/bin/*
+src/TelerikMvc.Web/obj/*
+*.user
+*.suo

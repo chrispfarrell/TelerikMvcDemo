@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 20.375" name="TelerikDemo">
+  <DataContextMoniker Name="/TelerikDemoDataContext" />
+  <nestedChildShapes>
+    <classShape Id="ccca1587-ce63-47e9-b022-8635effb4292" absoluteBounds="3.75, 14.625, 2, 1.5785953776041684">
+      <DataClassMoniker Name="/TelerikDemoDataContext/Category" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6e5999bb-02a9-4924-89f9-3ccd8342a156" absoluteBounds="3.765, 15.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="dcee451d-3522-4c42-900d-5cb4911be95f" absoluteBounds="3.5, 3.75, 2, 1.1939925130208327">
+      <DataClassMoniker Name="/TelerikDemoDataContext/CustomerCustomerDemo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="098de891-b03c-42e7-a18e-141b830ac211" absoluteBounds="3.515, 4.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6895fd56-f96f-46fd-994c-91623d9aefe4" absoluteBounds="0.75, 0.75, 2, 1.1939925130208335">
+      <DataClassMoniker Name="/TelerikDemoDataContext/CustomerDemographic" />
+      <nestedChildShapes>
+        <elementListCompartment Id="66e8eacf-8bba-4327-85fb-d905a9fe1e1f" absoluteBounds="0.765, 1.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9a1ea40e-6510-4668-8943-4dc518043fb5" absoluteBounds="0.75, 2.75, 2, 3.1170068359375">
+      <DataClassMoniker Name="/TelerikDemoDataContext/Customer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d32f7bfe-9145-4ed0-93ea-4e4886d9117b" absoluteBounds="0.765, 3.21, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f1b0dab8-d941-492a-ad1d-fae6efa1d2d3" absoluteBounds="6.5, 16, 2, 2.7324039713541683">
+      <DataClassMoniker Name="/TelerikDemoDataContext/Product" />
+      <nestedChildShapes>
+        <elementListCompartment Id="da711d83-4e48-4343-a612-f65294442519" absoluteBounds="6.515, 16.46, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3bc054a9-859f-4fd0-884a-2103137f37d0" absoluteBounds="3.75, 17, 2, 3.1170068359375023">
+      <DataClassMoniker Name="/TelerikDemoDataContext/Supplier" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1f86ac33-a0a9-42ff-89a7-a76c93d1d712" absoluteBounds="3.765, 17.46, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 1.34699625651042); (4.5 : 1.34699625651042); (4.5 : 3.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TelerikDemoDataContext/CustomerDemographic/CustomerDemographic_CustomerCustomerDemo" />
+      <nodes>
+        <classShapeMoniker Id="6895fd56-f96f-46fd-994c-91623d9aefe4" />
+        <classShapeMoniker Id="dcee451d-3522-4c42-900d-5cb4911be95f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 4.34699625651042); (3.5 : 4.34699625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TelerikDemoDataContext/Customer/Customer_CustomerCustomerDemo" />
+      <nodes>
+        <classShapeMoniker Id="9a1ea40e-6510-4668-8943-4dc518043fb5" />
+        <classShapeMoniker Id="dcee451d-3522-4c42-900d-5cb4911be95f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.75 : 15.3124995); (7.5 : 15.3124995); (7.5 : 16)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TelerikDemoDataContext/Category/Category_Product" />
+      <nodes>
+        <classShapeMoniker Id="ccca1587-ce63-47e9-b022-8635effb4292" />
+        <classShapeMoniker Id="f1b0dab8-d941-492a-ad1d-fae6efa1d2d3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.75 : 17.8662019856771); (6.5 : 17.8662019856771)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TelerikDemoDataContext/Supplier/Supplier_Product" />
+      <nodes>
+        <classShapeMoniker Id="3bc054a9-859f-4fd0-884a-2103137f37d0" />
+        <classShapeMoniker Id="f1b0dab8-d941-492a-ad1d-fae6efa1d2d3" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

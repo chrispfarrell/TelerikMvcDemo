@@ -1,0 +1,65 @@
+﻿@using Telerik.Web.Mvc.UI
+@using TelerikMvc.Data
+@{
+    ViewBag.Title = "AjaxBinding";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AjaxBinding</h2>
+
+
+@(Html.Telerik().Grid<Customer>()
+    .Name("CustomerGrid")
+    .Columns(columns =>
+                 {
+                     columns.Bound(o => o.CustomerID);
+                     columns.Bound(o => o.CompanyName);
+                     columns.Bound(o => o.ContactName);
+                     columns.Bound(o => o.PostalCode);
+                 })
+    .DataBinding(dataBinding => dataBinding.Ajax().Select("GetGridDataForAjaxBinding", "Grid",new { SomeValue=2}))
+    .Scrollable(scrolling => scrolling.Enabled(true).Height(180))
+    .Selectable()
+    .Sortable(sorting => sorting.Enabled(true))
+    .Pageable(paging => paging.Enabled(true).PageSize(20))
+    .Groupable(grouping => grouping.Enabled(false))
+    .Footer(true)
+)
+
+<h2>Markup</h2>
+<pre class="brush: html">
+
+&#64;(Html.Telerik().Grid&lt;Customer&gt;()
+    .Name("CustomerGrid")
+    .Columns(columns =>
+                 {
+                     columns.Bound(o => o.CustomerID);
+                     columns.Bound(o => o.CompanyName);
+                     columns.Bound(o => o.ContactName);
+                     columns.Bound(o => o.PostalCode);
+                 })
+    .DataBinding(dataBinding => dataBinding.Ajax().Select("GetGridDataForAjaxBinding", "Grid",new { SomeValue=2}))
+    .Scrollable(scrolling => scrolling.Enabled(true).Height(180))
+    .Selectable()
+    .Sortable(sorting => sorting.Enabled(true))
+    .Pageable(paging => paging.Enabled(true))
+    .Groupable(grouping => grouping.Enabled(false))
+    .Footer(true)
+)
+
+</pre>
+<h2>Controller</h2>
+<pre class="brush: csharp">
+public ActionResult AjaxBinding()
+{
+    return View();
+}
+
+[GridAction]
+public ActionResult GetGridDataForAjaxBinding(int someValue)
+{
+    var context = new TelerikDemoDataContext(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+
+    return View(new GridModel(context.Customers));
+}
+</pre>

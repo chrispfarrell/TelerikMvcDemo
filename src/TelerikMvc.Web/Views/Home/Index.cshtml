@@ -1,0 +1,66 @@
+﻿@using Telerik.Web.Mvc.UI
+@{
+    ViewBag.Title = "Getting Started with the Telerik MVC Controls - By Chris Farrell";
+}
+
+<h1>Installing the Telerik MVC Controls - By Chris Farrell</h1>
+<ol>
+    <li>Download the Telerik MVC Controls from <a href="http://www.telerik.com/products/aspnet-mvc/download.aspx" target="_blank">http://www.telerik.com/products/aspnet-mvc/download.aspx</a></li>
+    <li>Run Installer(next, next, finish)</li>
+    <li>Add reference to the Web Project for Telerik.Web.Mvc.dll located at (C:\Program Files (x86)\Telerik\Extensions for ASP.NET MVC Q2 2011\Binaries\Mvc3)</li>
+    <li>Add reference to Telerik.Web.Mvc.UI in pages element of web.config<br/>
+        <pre class="brush: xml">
+        <pages>
+          <namespaces>
+            <add namespace="System.Web.Helpers"></add>
+            <add namespace="System.Web.Mvc"></add>
+            <add namespace="System.Web.Mvc.Ajax" ></add>
+            <add namespace="System.Web.Mvc.Html"></add>
+            <add namespace="System.Web.Routing"></add>
+            <add namespace="System.Web.WebPages"></add>
+        
+            <!--Add this here to use the Telerik Controls-->
+            <add namespace="Telerik.Web.Mvc.UI"></add>
+
+          </namespaces>
+        </pages>
+        </pre> 
+    </li>
+    <li>Copy ENTIRE scripts folder to local project from C:\Program Files (x86)\Telerik\Extensions for ASP.NET MVC Q2 2011\Scripts.  Keep files in the folder(ex, 2011.2.914).  This prevents version conflicts</li>
+    <li>Copy ENTIRE folder from C:\Program Files (x86)\Telerik\Extensions for ASP.NET MVC Q2 2011\Content\2011.2.914 to local MVC project Content Folder</li>
+    <li>In MasterPage or &lt;head&gt; element of specific pages, add the StyleSheetRegister
+        <pre class="brush: html">
+         @Html.Raw("@(Html.Telerik().StyleSheetRegistrar().DefaultGroup(group => group.Add(\"telerik.common.css\").Add(\"telerik.webblue.min.css\")))");
+        </pre>
+        This will render the CSS for the Telerik Controls
+        <pre class="brush: html">
+@(Html.Telerik().StyleSheetRegistrar().DefaultGroup(group => group
+										.Add("telerik.common.css")
+                                        .Add("telerik.webblue.min.css")
+										))
+        </pre>
+    </li>
+    <li>In MasterPage or &lt;head&gt; element of specific pages, add the ScriptRegistrar...must be after any extensions that use it
+        <pre class="brush: html">
+         @Html.Raw("@(Html.Telerik().ScriptRegistrar().jQuery(false))")
+         </pre>
+         
+    </li>
+
+</ol>
+<hr/>
+<h1>Documentation and Examples</h1>
+<p>Telerik has very good documentation and examples and exceptional support.  The download of the Telerik Controls comes with live demos includng code.  Optionally you can also browse the live demos
+at <a href="http://demos.telerik.com/aspnet-mvc" target="_blank">http://demos.telerik.com/aspnet-mvc</a>
+</p>
+
+<hr/>
+<h1>Running the Demos and Examples without SQL Express Installed</h1>
+<p>If you do not have SQL Express installed you will get an error about "Database .... cannot be upgraded because it is read-only or has read-only files. </p>
+<ol>
+    <li>Copy Database from C:\Program Files (x86)\Telerik\Extensions for ASP.NET MVC Q2 2011\Examples\Telerik.Web.Mvc.Examples\App_Data to your local SQL Server Instance Data Folder</li>
+    <li>Attach DB in SQL Management Studio, use a meaningful database name(ex TelerikQ2_2011)</li>
+    <li>Update Web.Config for Telerik Examples at C:\Program Files (x86)\Telerik\Extensions for ASP.NET MVC Q2 2011\Examples\Telerik.Web.Mvc.Examples to point to your SQL instance database rather than the
+    file based SQL Express connection string</li>
+</ol>
+   

@@ -1,0 +1,80 @@
+﻿@using Telerik.Web.Mvc.UI
+@using TelerikMvc.Data
+@model List<Customer>
+@{
+    ViewBag.Title = "Static Binding";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#theme").change(function() {
+            window.location.href = '/Grid/StaticBinding?theme=' + $("#theme option:selected").val();
+        });
+    });
+</script>
+<select id="theme">
+    <option value="Vista">Vista</option>
+    <option value="Black">Black</option>
+    <option value="Default">Default</option>
+    <option value="Forest">Forest</option>
+    <option value="Hay">Hay</option>
+    <option value="Office2007">Office2007</option>
+    <option value="Office2010Black">Office2010Black</option>
+    <option value="Office2010Blue">Office2010Blue</option>
+    <option value="Office2010Silver">Office2010Silver</option>
+    <option value="Outlook">Outlook</option>
+    <option value="Web20">Web20</option>
+    <option value="WebBlue">WebBlue</option>
+</select>
+
+<h2>Static Binding to the View's Model(no AJAX)</h2>
+
+@(Html.Telerik().Grid(Model)
+    .Name("CustomerGrid")
+    .Columns(columns =>
+                 {
+                     columns.Bound(o => o.CustomerID);
+                     columns.Bound(o => o.CompanyName);
+                     columns.Bound(o => o.ContactName);
+                     columns.Bound(o => o.PostalCode);
+                 })
+    .DataBinding(dataBinding => dataBinding.Ajax().OperationMode(GridOperationMode.Client))
+    .Scrollable(scrolling => scrolling.Enabled(true).Height(180))
+    .Selectable()
+    .Sortable(sorting => sorting.Enabled(true))
+    .Pageable(paging => paging.Enabled(false))
+    .Groupable(grouping => grouping.Enabled(false))
+    .Footer(true)
+)
+
+<h2>Markup</h2>
+<pre class="brush: html">
+
+&#64;(Html.Telerik().Grid(Model)
+    .Name("CustomerGrid")
+    .Columns(columns =>
+                 {
+                     columns.Bound(o => o.CustomerID);
+                     columns.Bound(o => o.CompanyName);
+                     columns.Bound(o => o.ContactName);
+                     columns.Bound(o => o.PostalCode);
+                 })
+    .DataBinding(dataBinding => dataBinding.Ajax().OperationMode(GridOperationMode.Client))
+    .Scrollable(scrolling => scrolling.Enabled(true).Height(180))
+    .Selectable()
+    .Sortable(sorting => sorting.Enabled(true))
+    .Pageable(paging => paging.Enabled(false))
+    .Groupable(grouping => grouping.Enabled(false))
+    .Footer(true)
+)
+</pre>
+
+<h2>Controller</h2>
+<pre class="brush: csharp">
+public ActionResult StaticBinding()
+{
+    var context = new TelerikDemoDataContext(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+    return View(context.Customers.ToList());
+}
+</pre>

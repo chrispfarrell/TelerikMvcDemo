@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelerikMvc.Data", "TelerikMvc.Data\TelerikMvc.Data.csproj", "{9EE36C72-D476-457D-945F-96B4A8E65BDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TelerikMvc.Web", "TelerikMvc.Web\TelerikMvc.Web.csproj", "{41BD8926-A078-4E93-8D1D-E3F454CB9678}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9EE36C72-D476-457D-945F-96B4A8E65BDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EE36C72-D476-457D-945F-96B4A8E65BDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EE36C72-D476-457D-945F-96B4A8E65BDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EE36C72-D476-457D-945F-96B4A8E65BDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41BD8926-A078-4E93-8D1D-E3F454CB9678}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41BD8926-A078-4E93-8D1D-E3F454CB9678}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41BD8926-A078-4E93-8D1D-E3F454CB9678}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41BD8926-A078-4E93-8D1D-E3F454CB9678}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
