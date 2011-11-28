@@ -58,6 +58,7 @@ namespace TelerikMvc.Web.Controllers
         }
         #endregion
 
+        #region CustomPaging Example
         public ActionResult ManualPaging()
         {
             return View();
@@ -75,7 +76,33 @@ namespace TelerikMvc.Web.Controllers
             
             return View(gridModel);
         }
-      
+        #endregion
+
+        #region SearchFormExample
+        public ActionResult SearchForm()
+        {
+            return View();
+        }
+
+        [GridAction]
+        public ActionResult SearchFormGrid(string customerId, string companyName,string contactName, string postalCode)
+        {
+            var context = new TelerikDemoDataContext(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+
+            var customers = context.Customers.AsQueryable();
+
+            if (!string.IsNullOrEmpty(customerId))
+                customers = customers.Where(r => r.CustomerID == customerId);
+            if (!string.IsNullOrEmpty(companyName))
+                customers = customers.Where(r => r.CompanyName == companyName);
+            if (!string.IsNullOrEmpty(contactName))
+                customers = customers.Where(r => r.ContactName == contactName);
+            if (!string.IsNullOrEmpty(postalCode))
+                customers = customers.Where(r => r.PostalCode == postalCode);
+
+            return View(new GridModel(customers));
+        }
+        #endregion
 
     }
 }

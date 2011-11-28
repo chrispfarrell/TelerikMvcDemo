@@ -44,7 +44,8 @@
     .Selectable()
     .Sortable(sorting => sorting.Enabled(true))
     .Pageable(paging => paging.Enabled(false))
-    .Groupable(grouping => grouping.Enabled(false))
+    .Groupable(grouping => grouping.Enabled(true))
+    .Filterable()
     .Footer(true)
 )
 

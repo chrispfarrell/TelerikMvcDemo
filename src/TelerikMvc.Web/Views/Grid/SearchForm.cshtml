@@ -1,0 +1,138 @@
+﻿@using Telerik.Web.Mvc.UI
+@using TelerikMvc.Data
+@{
+    ViewBag.Title = "SearchForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    #SearchForm
+    {
+        margin-bottom:20px;
+        
+    }
+    #SearchForm input
+    {
+        width:100px;
+        margin-right:20px;
+        margin-left:10px;
+    }
+</style>
+<script type="text/javascript">
+    function SearchForm() {
+        $("#CustomerGrid").data('tGrid').ajaxRequest();
+		return false;
+	};
+    function AttachSearchCriteria(e) {
+        var searchData = {
+            CustomerId: $("#CustomerId").val(),
+            CompanyName: $("#CompanyName").val(),
+            ContactName: $("#ContactName").val(),
+            PostalCode: $("#PostalCode").val()
+        };
+		e.data = $.extend(e.data, searchData);
+	};
+</script>
+<h2>SearchForm</h2>
+
+<form id="SearchForm">
+    <label>Customer Id:</label>@Html.TextBox("CustomerId")
+    <label>Company Name:</label>@Html.TextBox("CompanyName")
+    <label>Contact Name:</label>@Html.TextBox("ContactName")
+    <label>Postal Code:</label>@Html.TextBox("PostalCode")
+    <input type="button" onclick="SearchForm()" value="Search"/>   
+</form>
+
+@(Html.Telerik().Grid<Customer>()
+    .Name("CustomerGrid")
+    .Columns(columns =>
+                 {
+                     columns.Bound(o => o.CustomerID);
+                     columns.Bound(o => o.CompanyName);
+                     columns.Bound(o => o.ContactName);
+                     columns.Bound(o => o.PostalCode);
+                 })
+    .DataBinding(dataBinding => dataBinding.Ajax().Select("SearchFormGrid", "Grid"))
+    .Scrollable(scrolling => scrolling.Enabled(true).Height(180))
+    .Selectable()
+    .ClientEvents(events => events.OnDataBinding("AttachSearchCriteria"))
+    .Sortable(sorting => sorting.Enabled(true))
+    .Pageable(paging => paging.Enabled(true).PageSize(20))
+    .Groupable(grouping => grouping.Enabled(false))
+    .Footer(true)
+)
+
+
+
+
+<h2>Markup</h2>
+<pre class="brush: html">
+<form id="SearchForm">
+    <label>Customer Id:</label>@Html.TextBox("CustomerId")
+    <label>Company Name:</label>@Html.TextBox("CompanyName")
+    <label>Contact Name:</label>@Html.TextBox("ContactName")
+    <label>Postal Code:</label>@Html.TextBox("PostalCode")
+    <input type="button" onclick="SearchForm()" value="Search"/>   
+</form>
+
+&#64;(Html.Telerik().Grid&lt;Customer&gt;()
+     .Name("CustomerGrid")
+    .Columns(columns =>
+                 {
+                     columns.Bound(o => o.CustomerID);
+                     columns.Bound(o => o.CompanyName);
+                     columns.Bound(o => o.ContactName);
+                     columns.Bound(o => o.PostalCode);
+                 })
+    .DataBinding(dataBinding => dataBinding.Ajax().Select("SearchFormGrid", "Grid"))
+    .Scrollable(scrolling => scrolling.Enabled(true).Height(180))
+    .Selectable()
+    .ClientEvents(events => events.OnDataBinding("AttachSearchCriteria"))
+    .Sortable(sorting => sorting.Enabled(true))
+    .Pageable(paging => paging.Enabled(true).PageSize(20))
+    .Groupable(grouping => grouping.Enabled(false))
+    .Footer(true)
+)
+</pre>
+<h2>Javascript</h2>
+<pre class="brush: jscript">
+function SearchForm() {
+    $("#CustomerGrid").data('tGrid').ajaxRequest();
+	return false;
+};
+function AttachSearchCriteria(e) {
+    var searchData = {
+        CustomerId: $("#CustomerId").val(),
+        CompanyName: $("#CompanyName").val(),
+        ContactName: $("#ContactName").val(),
+        PostalCode: $("#PostalCode").val()
+    };
+	e.data = $.extend(e.data, searchData);
+};
+
+</pre>
+<h2>Controller</h2>
+<pre class="brush: csharp">
+ public ActionResult SearchForm()
+{
+    return View();
+}
+
+[GridAction]
+public ActionResult SearchFormGrid(string customerId, string companyName,string contactName, string postalCode)
+{
+    var context = new TelerikDemoDataContext(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+
+    var customers = context.Customers.AsQueryable();
+
+    if (!string.IsNullOrEmpty(customerId))
+        customers = customers.Where(r => r.CustomerID == customerId);
+    if (!string.IsNullOrEmpty(companyName))
+        customers = customers.Where(r => r.CompanyName == companyName);
+    if (!string.IsNullOrEmpty(contactName))
+        customers = customers.Where(r => r.ContactName == contactName);
+    if (!string.IsNullOrEmpty(postalCode))
+        customers = customers.Where(r => r.PostalCode == postalCode);
+
+    return View(new GridModel(customers));
+}
+</pre>
